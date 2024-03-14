@@ -1,0 +1,31 @@
+#!/usr/bin/python3
+
+import os
+import sys
+
+def compile_python_file():
+    # Check if PYFILE environment variable is set
+    if "PYFILE" not in os.environ:
+        print("Error: Environment variable $PYFILE is not set.", file=sys.stderr)
+        sys.exit(1)
+    
+    pyfile = os.environ["PYFILE"]
+    
+    # Check if the specified Python file exists
+    if not os.path.exists(pyfile):
+        print(f"Error: Python file '{pyfile}' not found.", file=sys.stderr)
+        sys.exit(1)
+
+    # Compile the Python file
+    output_file = pyfile + "c"
+    exit_code = os.system(f"python3 -m compileall {pyfile} >/dev/null 2>&1")
+    
+    if exit_code != 0:
+        print(f"Error: Failed to compile {pyfile}.", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Compiling {pyfile} ...")
+
+if __name__ == "__main__":
+    compile_python_file()
+
