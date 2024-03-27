@@ -1,11 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# This script runs a Python script stored in the $PYFILE environment variable
 
-# Check if PYFILE environment variable is set
-if [ -z "$PYFILE" ]; then
-    echo "Error: PYFILE environment variable is not set."
-    exit 1
-fi
-
-# Run the Python script
 python3 "$PYFILE"
-
