@@ -1,4 +1,3 @@
-#!/usr/bin/python3
-# This script runs Python code stored in the $PYCODE environment variable
-
+#!/bin/bash
 python3 -c "$PYCODE"
+
