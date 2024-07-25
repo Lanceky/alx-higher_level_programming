@@ -1,6 +1,5 @@
--- This script prints the full description of the table first_table
-
-SELECT CONCAT('Table: ', table_name, '\nCreate Table: ', create_statement) AS 'Table Description'
-FROM information_schema.tables
-WHERE table_schema = 'hbtn_0c_0' AND table_name = 'first_table';
+/* Query to retrieve table structure of first_table */
+SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE, COLUMN_DEFAULT
+FROM information_schema.COLUMNS
+WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'first_table';
 
