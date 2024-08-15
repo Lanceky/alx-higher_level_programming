@@ -1,31 +1,26 @@
-#!/usr/bin/python3
+#!/bin/bash
 
-import os
-import sys
+# Check if the PYFILE environment variable is set
+if [ -z "$PYFILE" ]; then
+    echo "PYFILE environment variable is not set."
+    exit 1
+fi
 
-def compile_python_file():
-    # Check if PYFILE environment variable is set
-    if "PYFILE" not in os.environ:
-        print("Error: Environment variable $PYFILE is not set.", file=sys.stderr)
-        sys.exit(1)
-    
-    pyfile = os.environ["PYFILE"]
-    
-    # Check if the specified Python file exists
-    if not os.path.exists(pyfile):
-        print(f"Error: Python file '{pyfile}' not found.", file=sys.stderr)
-        sys.exit(1)
+# Compile the Python script
+echo "Compiling $PYFILE ..."
+python3 -m py_compile "$PYFILE"
 
-    # Compile the Python file
-    output_file = pyfile + "c"
-    exit_code = os.system(f"python3 -m compileall {pyfile} >/dev/null 2>&1")
-    
-    if exit_code != 0:
-        print(f"Error: Failed to compile {pyfile}.", file=sys.stderr)
-        sys.exit(1)
+# Determine the expected output filename based on Python's naming convention
+compiled_file="${PYFILE}c"
 
-    print(f"Compiling {pyfile} ...")
+# Locate the compiled file
+compiled_path=$(find . -name "${PYFILE%.py}.cpython-*.pyc")
 
-if __name__ == "__main__":
-    compile_python_file()
+# Rename the compiled file to the expected output filename
+if [ -f "$compiled_path" ]; then
+    mv "$compiled_path" "$compiled_file"
+else
+    echo "Compiled file not found!"
+    exit 1
+fi
 
