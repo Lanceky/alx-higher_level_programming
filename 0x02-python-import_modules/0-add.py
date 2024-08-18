@@ -1,8 +1,6 @@
-def add(a, b):
-    return a + b
+#!/usr/bin/python3
+from add_0 import add
 
-# The function call is required for execution
-result = add(1, 2)
-
-# Print the result using string formatting
-print(f"The sum of 1 and 2 is {result}")
+a = 1
+b = 2
+print("{} + {} = {}".format(a, b, add(a, b)))
