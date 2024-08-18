@@ -1,1 +1,2 @@
-This dir contains projects on pytonn modules
+thid dir contains projects on python modules
+
