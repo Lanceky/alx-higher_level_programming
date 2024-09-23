@@ -4,7 +4,6 @@ Module: 101-square.py
 Defines the Square class representing a square.
 """
 
-
 class Square:
     """
     Represents a square.
