@@ -2,8 +2,10 @@
 """
 This module defines a simple class
 """
+
 class Square:
     """
     Represents a square
     """
+
     pass
