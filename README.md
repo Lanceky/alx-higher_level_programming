@@ -1,3 +1,1 @@
-Python - Test-driven development
-This directory contains projects that test python scripts
-Main concpt - UNITTEST & DOCTESTS
+This repository contains varous projects involving higher level programming languages 
